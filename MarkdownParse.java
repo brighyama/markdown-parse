@@ -9,15 +9,31 @@ public class MarkdownParse {
         ArrayList<String> toReturn = new ArrayList<>();
         // find the next [, then find the ], then find the (, then take up to
         // the next )
+        
+        // verify that the open-close pattern is appropriate
+
+        //Test2-file.md
+        //We are correctly reading opening bracket
+        //We then read the closing bracket but that takes us to the very end 
+        //Then we look for an open paren but there are no more open paren
+        //This results in an infinite loop (which is the error we are gett)
+
         int currentIndex = 0;
+        int nextOpenBracket = 0;
+        int nextCloseBracket = markdown.indexOf("]");
+        int openParen = markdown.indexOf("(");
+        int closeParen = 0;
+        
         while(currentIndex < markdown.length()) {
-            int nextOpenBracket = markdown.indexOf("[", currentIndex);
-            int nextCloseBracket = markdown.indexOf("]", nextOpenBracket);
-            int openParen = markdown.indexOf("(", nextCloseBracket);
-            int closeParen = markdown.indexOf(")", openParen);
+            if (nextCloseBracket > openParen){break;}
+            nextOpenBracket = markdown.indexOf("[", currentIndex);
+            nextCloseBracket = markdown.indexOf("]", nextOpenBracket);
+            openParen = markdown.indexOf("(", nextCloseBracket);
+            closeParen = markdown.indexOf(")", openParen);
             toReturn.add(markdown.substring(openParen + 1, closeParen));
             currentIndex = closeParen + 1;
         }
+        
         return toReturn;
     }
     public static void main(String[] args) throws IOException {
