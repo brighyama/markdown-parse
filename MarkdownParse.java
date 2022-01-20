@@ -4,6 +4,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Stack;
+import java.util.HashMap;
 
 
 public class MarkdownParse {
@@ -23,7 +24,25 @@ public class MarkdownParse {
         Stack<String> parenParity = new Stack<>();
         //if we find an open bracket/parenthesis push into stack
         //if we find a closing bracket/parenthesis and the top of the stack is 
+        /*
+        .apng
+        .avif
+        .gif
+        .jpg, .jpeg, .jfif, .pjpeg, .pjp
+        .png
+        .svg
+        .webp
+        */
+
+        /*
+        String myStr = "Hello";
+        System.out.println(myStr.contains("Hel"));   // true
+        System.out.println(myStr.contains("e"));     // true
+        System.out.println(myStr.contains("Hi"));    // false
+*/  
         
+        String[] imageExtensions = { ".jpg", ".png", ".jpeg", ".raw", ".jfif", ".pjpeg", ".pjp", ".avif", ".gif", ".svg", ".webp" };
+
         int currentIndex = 0;
         int nextOpenBracket = 0;
         int nextCloseBracket = markdown.indexOf("]");
@@ -37,10 +56,21 @@ public class MarkdownParse {
             openParen = markdown.indexOf("(", nextCloseBracket);
             closeParen = markdown.indexOf(")", openParen);
             if (nextOpenBracket == -1 || nextCloseBracket == -1 || openParen == -1 || closeParen == -1) break;
-            toReturn.add(markdown.substring(openParen + 1, closeParen));
+            
+            //run for loop and .contains on the substring?
+            boolean check = false;
+            for ( String s : imageExtensions ){
+                if (markdown.substring(openParen+1, closeParen).contains(s)){
+                    check = true;
+                    break;
+                } 
+            }
+
+            if (check == false) {
+                toReturn.add(markdown.substring(openParen + 1, closeParen));
+            }
             currentIndex = closeParen + 1;
         }
-        
         return toReturn;
     }
     
