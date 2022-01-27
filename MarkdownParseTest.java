@@ -51,6 +51,69 @@ public class MarkdownParseTest {
         assertEquals(this.strList, List.of());
     }
 
+    @Test
+    public void testGetLinks5() throws IOException {
+        Path fileName = Path.of("test-file2.md");
+        String contents = Files.readString(fileName);
+        this.strList = MarkdownParse.getLinks(contents);
+
+        assertEquals(this.strList, List.of("https://something.com", "some-page.html"));
+    }
+
+    @Test
+    public void testGetLinks6() throws IOException {
+        Path fileName = Path.of("test-file3.md");
+        String contents = Files.readString(fileName);
+        this.strList = MarkdownParse.getLinks(contents);
+
+        assertEquals(this.strList, List.of());
+    }
+
+    @Test
+    public void testGetLinks7() throws IOException {
+        Path fileName = Path.of("test-file4.md");
+        String contents = Files.readString(fileName);
+        this.strList = MarkdownParse.getLinks(contents);
+
+        assertEquals(this.strList, List.of());
+    }
+
+    @Test
+    public void testGetLinks8() throws IOException {
+        Path fileName = Path.of("test-file5.md");
+        String contents = Files.readString(fileName);
+        this.strList = MarkdownParse.getLinks(contents);
+
+        assertEquals(this.strList, List.of());
+    }
+
+    @Test
+    public void testGetLinks9() throws IOException {
+        Path fileName = Path.of("test-file6.md");
+        String contents = Files.readString(fileName);
+        this.strList = MarkdownParse.getLinks(contents);
+
+        assertEquals(this.strList, List.of("page.com"));
+    }
+
+    @Test
+    public void testGetLinks10() throws IOException {
+        Path fileName = Path.of("test-file7.md");
+        String contents = Files.readString(fileName);
+        this.strList = MarkdownParse.getLinks(contents);
+
+        assertEquals(this.strList, List.of());
+    }
+
+    @Test
+    public void testGetLinks11() throws IOException {
+        Path fileName = Path.of("test-file8.md");
+        String contents = Files.readString(fileName);
+        this.strList = MarkdownParse.getLinks(contents);
+
+        assertEquals(this.strList, List.of());
+    }
+
 }
 
 // javac -cp "lib/\*" MarkdownParseTest.java
