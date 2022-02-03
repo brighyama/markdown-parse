@@ -118,6 +118,15 @@ public class MarkdownParseTest {
     public void testAddition() {
         assertEquals(2, 1+1);
     }
+
+    @Test
+    public void testGetLinks12() throws IOException {
+        Path fileName = Path.of("test-file9.md");
+        String contents = Files.readString(fileName);
+        this.strList = MarkdownParse.getLinks(contents);
+
+        assertEquals(this.strList, List.of());
+    }
 }
 
 // javac -cp "lib/\*" MarkdownParseTest.java
