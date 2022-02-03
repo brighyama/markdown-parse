@@ -114,6 +114,10 @@ public class MarkdownParseTest {
         assertEquals(this.strList, List.of());
     }
 
+    @Test
+    public void testAddition() {
+        assertEquals(1, 1+1);
+    }
 }
 
 // javac -cp "lib/\*" MarkdownParseTest.java
