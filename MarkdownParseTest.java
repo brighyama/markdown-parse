@@ -127,7 +127,36 @@ public class MarkdownParseTest {
 
         assertEquals(this.strList, List.of());
     }
+
+    @Test
+    public void testSnippet1() throws IOException {
+        Path fileName = Path.of("test-snippet1.md");
+        String contents = Files.readString(fileName);
+        this.strList = MarkdownParse.getLinks(contents);
+
+        assertEquals(this.strList, List.of());
+    }
+
+    @Test
+    public void testSnippet2() throws IOException {
+        Path fileName = Path.of("test-snippet2.md");
+        String contents = Files.readString(fileName);
+        this.strList = MarkdownParse.getLinks(contents);
+
+        assertEquals(this.strList, List.of());
+    }
+
+    @Test
+    public void testSnippet3() throws IOException {
+        Path fileName = Path.of("test-snippet3.md");
+        String contents = Files.readString(fileName);
+        this.strList = MarkdownParse.getLinks(contents);
+
+        assertEquals(this.strList, List.of());
+    }
 } 
+
+
 
 // javac -cp "lib/\*" MarkdownParseTest.java
 // java -cp ".;lib/junit-4.13.2.jar;lib/hamcrest-core-1.3.jar" org.junit.runner.JUnitCore MarkdownParseTest
