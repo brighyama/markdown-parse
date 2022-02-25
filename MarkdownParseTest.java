@@ -115,11 +115,6 @@ public class MarkdownParseTest {
     }
 
     @Test
-    public void testAddition() {
-        assertEquals(2, 1+1);
-    }
-
-    @Test
     public void testGetLinks12() throws IOException {
         Path fileName = Path.of("test-file9.md");
         String contents = Files.readString(fileName);
@@ -134,7 +129,8 @@ public class MarkdownParseTest {
         String contents = Files.readString(fileName);
         this.strList = MarkdownParse.getLinks(contents);
 
-        assertEquals(this.strList, List.of());
+        assertEquals(List.of("`google.com","google.com","ucsd.edu"), this.strList);
+        
     }
 
     @Test
@@ -143,7 +139,7 @@ public class MarkdownParseTest {
         String contents = Files.readString(fileName);
         this.strList = MarkdownParse.getLinks(contents);
 
-        assertEquals(this.strList, List.of());
+        assertEquals(List.of("a.com","a.com(())","example.com"), this.strList);
     }
 
     @Test
@@ -152,7 +148,7 @@ public class MarkdownParseTest {
         String contents = Files.readString(fileName);
         this.strList = MarkdownParse.getLinks(contents);
 
-        assertEquals(this.strList, List.of());
+        assertEquals(List.of("https://ucsd-cse15l-w22.github.io/"), this.strList);
     }
 } 
 
